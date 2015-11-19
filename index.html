@@ -16,15 +16,35 @@
 
 <input type="password" alphabet>
 
+<div>
+	<h3>Class Custom Directive</h3>
+	Enter a number: <input type="text" class="numeric">
+</div>
+
 <script stype="text/javascript">
 	var myApp = angular.module('myApp',[]);
 	myApp.directive('alphabet', function(){
 		return{
-			restrict: 'A',
+			restrict: 'A', //restricting A as in Attribute, so we don't need a "class= in fron to fit"
 			link: function(scope,elem,attr){
 				elem.bind('keyup', function(e){
 					//on the element that is bind on, call the keyup, see if e has a letter in it
 					if(/^[a-zA-Z]+$/.test(e.currentTarget.value)){
+						e.currentTarget.style.backgroundColor = 'green';
+					}else{
+						e.currentTarget.style.backgroundColor = 'red';
+					}
+				})
+			}
+		}
+	});
+
+	myApp.directive('numeric', function(){
+		return{
+			restrict: 'C', //restrict to class, so we need class=""
+			link: function(scope, elem, attr){
+				elem.bind('keyup', function(e){
+					if(/^[\d]+$/.test(e.currentTarget.value)){
 						e.currentTarget.style.backgroundColor = 'green';
 					}else{
 						e.currentTarget.style.backgroundColor = 'red';
