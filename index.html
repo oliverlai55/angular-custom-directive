@@ -23,7 +23,8 @@
 
 <div>
 	<h3>Element Custom Directive</h3>
-	Select a value: <drop-down object="values">
+	Select a value: <drop-down object="values"></drop-down>Enter a value for the drop-down:<input type="text" ng-model="vals">
+	<button ng-click="add()">Add</button>
 </div>
 
 <script stype="text/javascript">
@@ -77,6 +78,16 @@
 
 myApp.controller('customDirective', function($scope){
 	$scope.values = ["1", "2", "3", "4", "5", "6"];
+	$scope.students = ['Freddy','Yohske','Andrew'];
+	$scope.add = function(){
+		if($scope.val != ""){
+			$scope.students.push($scope.val);
+		}
+		if($scope.vals !== ""){
+			$scope.students.push($scope.vals);
+		}
+		$scope.val = "";
+	}
 });
 </script>
 	
